@@ -14,7 +14,7 @@ function App() {
   const [activeSubject, setActiveSubject] = useState("");
   const [activeTopic, setActiveTopic] = useState("");
   const [selectedSession, setSelectedSession] = useState(null);
-  const [initialTime, setInitialTime] = useState(0);
+  const [resumeTime, setResumeTime] = useState(0);
 
   // This array will store all your finished sessions
   const [sessions, setSessions] = useState([]);
@@ -40,13 +40,13 @@ function App() {
       const lastRealSession = sessions[0];
       setActiveSubject(lastRealSession.subject);
       setActiveTopic(lastRealSession.topic || "");
-      setInitialTime(lastRealSession.seconds || 0);
+      setResumeTime(lastRealSession.seconds || 0);
       setIsStudying(true);
     } else {
       // fallback to mock
       setActiveSubject(mockSession.subject);
       setActiveTopic(mockSession.topic || "");
-      setInitialTime(0);
+      setResumeTime(0);
       setIsStudying(true);
     }
   };
@@ -54,7 +54,7 @@ function App() {
   const handleStartNew = () => {
     setActiveSubject(""); // Empty for first-time use
     setActiveTopic("");
-    setInitialTime(0);
+    setResumeTime(0);
     setIsStudying(true);
   };
   const handleDeleteSession = async (id) => {
@@ -107,7 +107,14 @@ function App() {
   };
 
   if (isStudying) {
-    return <ActiveTimer subject={activeSubject} onEnd={handleEndSession} />;
+    return (
+      <ActiveTimer
+        subject={activeSubject}
+        initialTime={resumeTime}
+        initialTopic={activeTopic}
+        onEnd={handleEndSession}
+      />
+    );
   }
 
   return (

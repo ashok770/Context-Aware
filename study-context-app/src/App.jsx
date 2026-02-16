@@ -145,11 +145,20 @@ function App() {
                           {s.subject} - {s.topic || "General"}
                         </h3>
                         <p>
-                          Duration: {Math.floor(s.seconds / 60)} mins | Date: {" "}
-                          {s.date || (s.createdAt ? new Date(s.createdAt).toLocaleDateString() : "")}
+                          Duration: {Math.floor(s.seconds / 60)} mins | Date:{" "}
+                          {s.date ||
+                            (s.createdAt
+                              ? new Date(s.createdAt).toLocaleDateString()
+                              : "")}
                         </p>
                       </div>
-                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                      <div
+                        style={{
+                          display: "flex",
+                          gap: 8,
+                          alignItems: "center",
+                        }}
+                      >
                         <button
                           className="view-more-btn"
                           onClick={() => setSelectedSession(s)}
@@ -177,7 +186,7 @@ function App() {
           </div>
         )}
 
-        {currentView === "planner" && <Planner />}
+        {currentView === "planner" && <Planner sessions={sessions} />}
       </main>
     </div>
   );

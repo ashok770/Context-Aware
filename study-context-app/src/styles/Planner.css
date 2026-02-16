@@ -227,3 +227,54 @@
     width: 100%;
     justify-content: flex-end;
   }
+}
+.planner-container {
+  padding: 20px;
+  color: white;
+}
+
+.stats-bar {
+  display: flex;
+  gap: 20px;
+  margin: 2rem 0;
+}
+
+.stat-card {
+  background: #1e293b;
+  padding: 1.5rem;
+  border-radius: 12px;
+  min-width: 150px;
+  border: 1px solid #334155;
+}
+
+.stat-card span {
+  color: #94a3b8;
+  font-size: 0.9rem;
+}
+
+.grid-30 {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(60px, 1fr));
+  gap: 15px;
+  background: #1e293b;
+  padding: 2rem;
+  border-radius: 15px;
+}
+
+.day-box {
+  aspect-ratio: 1;
+  background: #0f172a;
+  border: 1px solid #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 8px;
+  font-weight: bold;
+  color: #475569;
+}
+
+.day-box.completed {
+  background: #38bdf8; /* Your accent blue */
+  color: #0f172a;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}

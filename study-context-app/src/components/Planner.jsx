@@ -1,7 +1,7 @@
 import React from "react";
 import "../styles/Planner.css";
 
-const Planner = () => {
+const Planner = ({ sessions = [] }) => {
   const [tasks, setTasks] = React.useState([]);
   const [taskInput, setTaskInput] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("general");

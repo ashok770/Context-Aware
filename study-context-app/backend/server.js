@@ -3,6 +3,7 @@ const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
 const sessionRoutes = require("./routes/sessions");
+const taskRoutes = require("./routes/tasks");
 
 const app = express();
 
@@ -20,6 +21,7 @@ app.get("/api/health", (req, res) => {
 });
 
 app.use("/api/sessions", sessionRoutes);
+app.use("/api/tasks", taskRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
@@ -27,18 +29,7 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Something went wrong!" });
 });
 
-// DELETE a session by ID
-app.delete("/api/sessions/:id", async (req, res) => {
-  try {
-    const deletedSession = await Session.findByIdAndDelete(req.params.id);
-    if (!deletedSession) {
-      return res.status(404).json({ message: "Session not found" });
-    }
-    res.json({ message: "Session deleted successfully" });
-  } catch (err) {
-    res.status(500).json({ message: err.message });
-  }
-});
+// NOTE: session delete handled in sessions route; tasks route registered above
 
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {

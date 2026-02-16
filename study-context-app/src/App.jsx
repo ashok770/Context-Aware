@@ -64,9 +64,9 @@ function App() {
   };
   // This function runs when you click "End Session"
   const handleEndSession = async (sessionData) => {
-    // 1. Prepare the payload for MongoDB
+    // 1. Prepare the payload for MongoDB — prefer subject from the timer
     const sessionToSave = {
-      subject: activeSubject || "New Subject",
+      subject: sessionData.subject || activeSubject || "New Subject",
       topic: sessionData.topic,
       notes: sessionData.notes,
       seconds: sessionData.seconds,

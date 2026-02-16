@@ -30,18 +30,14 @@ const ActiveTimer = ({ subject, onEnd }) => {
     <div className="timer-container">
       <div className="timer-header">
         <div className="subject-info">
-          {/* If subject exists (Resume), show text. If not (New), show input */}
-          {subject ? (
-            <h1>{localSubject}</h1>
-          ) : (
-            <input
-              type="text"
-              placeholder="Enter Subject (e.g. DBMS)"
-              className="subject-input"
-              value={localSubject}
-              onChange={(e) => setLocalSubject(e.target.value)}
-            />
-          )}
+          {/* Always allow editing the subject (resume or new) */}
+          <input
+            type="text"
+            placeholder="Enter Subject (e.g. DBMS)"
+            className="subject-input"
+            value={localSubject}
+            onChange={(e) => setLocalSubject(e.target.value)}
+          />
 
           <input
             type="text"

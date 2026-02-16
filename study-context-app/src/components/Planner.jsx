@@ -17,31 +17,73 @@ const Planner = ({ sessions = [] }) => {
 
   const priorities = ["low", "medium", "high"];
 
-  const addTask = () => {
-    if (taskInput.trim()) {
-      setTasks([
-        ...tasks,
-        {
-          id: Date.now(),
+  // Load tasks from backend on mount
+  React.useEffect(() => {
+    const fetchTasks = async () => {
+      try {
+        const res = await fetch("http://localhost:5000/api/tasks");
+        if (res.ok) {
+          const data = await res.json();
+          setTasks(data);
+        }
+      } catch (err) {
+        console.error("Failed to fetch tasks", err);
+      }
+    };
+    fetchTasks();
+  }, []);
+
+  const addTask = async () => {
+    if (!taskInput.trim()) return;
+    try {
+      const res = await fetch("http://localhost:5000/api/tasks", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
           text: taskInput,
-          completed: false,
           category: selectedCategory,
           priority: selectedPriority,
-          createdAt: new Date().toLocaleDateString(),
-        },
-      ]);
-      setTaskInput("");
+        }),
+      });
+      if (res.ok) {
+        const saved = await res.json();
+        setTasks([saved, ...tasks]);
+        setTaskInput("");
+      }
+    } catch (err) {
+      console.error("Failed to add task", err);
     }
   };
 
-  const toggleTask = (id) => {
-    setTasks(
-      tasks.map((t) => (t.id === id ? { ...t, completed: !t.completed } : t)),
-    );
+  const toggleTask = async (id) => {
+    try {
+      const task = tasks.find((t) => t._id === id || t.id === id);
+      if (!task) return;
+      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        method: "PATCH",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ completed: !task.completed }),
+      });
+      if (res.ok) {
+        const updated = await res.json();
+        setTasks(tasks.map((t) => (t._id === updated._id ? updated : t)));
+      }
+    } catch (err) {
+      console.error("Failed to toggle task", err);
+    }
   };
 
-  const deleteTask = (id) => {
-    setTasks(tasks.filter((t) => t.id !== id));
+  const deleteTask = async (id) => {
+    try {
+      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+        method: "DELETE",
+      });
+      if (res.ok) {
+        setTasks(tasks.filter((t) => t._id !== id && t.id !== id));
+      }
+    } catch (err) {
+      console.error("Failed to delete task", err);
+    }
   };
 
   const getCategoryColor = (categoryId) => {

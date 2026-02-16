@@ -30,18 +30,34 @@ function App() {
   };
 
   // This function runs when you click "End Session"
-  const handleEndSession = (data) => {
-    const newSession = {
-      id: Date.now(),
-      subject: data.subject || activeSubject || "New Subject",
-      topic: data.topic,
-      notes: data.notes,
-      seconds: data.seconds,
-      date: new Date().toLocaleDateString(),
+  const handleEndSession = async (sessionData) => {
+    // 1. Prepare the payload for MongoDB
+    const sessionToSave = {
+      subject: activeSubject || "New Subject",
+      topic: sessionData.topic,
+      notes: sessionData.notes,
+      seconds: sessionData.seconds
     };
-    setSessions([newSession, ...sessions]); // Save to the list
-    setIsStudying(false);
-    setCurrentView("sessions"); // Show history immediately
+
+    try {
+      // 2. Send the POST request to your Express server
+      const response = await fetch('http://localhost:5000/api/sessions', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(sessionToSave)
+      });
+
+      if (response.ok) {
+        const savedSession = await response.json();
+        // 3. Update the UI with the session returned from the DB
+        setSessions([savedSession, ...sessions]);
+        setIsStudying(false);
+        setCurrentView('sessions'); // Take the user to their history
+      }
+    } catch (err) {
+      console.error("Failed to save session to cloud:", err);
+      alert("Cloud save failed, but your session is still in local state!");
+    }
   };
 
   if (isStudying) {

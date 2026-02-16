@@ -2,6 +2,7 @@ require("dotenv").config();
 const express = require("express");
 const cors = require("cors");
 const connectDB = require("./config/db");
+const sessionRoutes = require("./routes/sessions");
 
 const app = express();
 
@@ -17,6 +18,8 @@ app.use(cors());
 app.get("/api/health", (req, res) => {
   res.json({ message: "Backend is running" });
 });
+
+app.use("/api/sessions", sessionRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

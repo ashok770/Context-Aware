@@ -1,0 +1,90 @@
+.timer-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #0f172a; /* Dark background */
+  color: white;
+  padding: 20px;
+}
+
+.timer-header {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 800px;
+  margin-bottom: 2rem;
+}
+
+.clock-face {
+  font-size: 6rem;
+  font-weight: bold;
+  color: #38bdf8; /* Accent Blue */
+  font-family: "Courier New", monospace;
+  margin: 2rem 0;
+  text-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.live-notes {
+  width: 100%;
+  max-width: 800px;
+  height: 300px;
+  background: #1e293b;
+  border: 1px solid #334155;
+  color: white;
+  padding: 1rem;
+  border-radius: 12px;
+  font-size: 1.1rem;
+  resize: none;
+}
+
+.end-btn {
+  background: #ef4444;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 8px;
+  cursor: pointer;
+}
+.subject-info {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.subject-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #334155;
+  color: #38bdf8;
+  font-size: 1.5rem;
+  padding: 10px 5px;
+  outline: none;
+  transition: border-color 0.3s;
+  font-weight: bold;
+}
+
+.subject-input:focus {
+  border-bottom-color: #38bdf8;
+}
+
+.topic-input {
+  background: transparent;
+  border: none;
+  border-bottom: 2px solid #334155;
+  color: #38bdf8;
+  font-size: 1.2rem;
+  padding: 5px;
+  outline: none;
+  transition: border-color 0.3s;
+}
+
+.topic-input:focus {
+  border-bottom-color: #38bdf8;
+}
+
+/* Make sure the notes area is scrollable if it gets long */
+.live-notes {
+  overflow-y: auto;
+}

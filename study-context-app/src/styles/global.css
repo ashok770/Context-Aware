@@ -1,0 +1,70 @@
+/* src/styles/global.css */
+:root {
+  --bg-dark: #0f172a;
+  --card-bg: #1e293b;
+  --accent-blue: #38bdf8;
+  --text-main: #f1f5f9;
+  --text-dim: #94a3b8;
+}
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Inter", sans-serif;
+  background-color: var(--bg-dark);
+  color: var(--text-main);
+}
+.app-container {
+  display: flex;
+  min-height: 100vh;
+}
+
+.sidebar {
+  width: 250px;
+  background-color: #111827; /* Slightly darker than main bg */
+  padding: 2rem;
+  border-right: 1px solid #1e293b;
+}
+
+.main-content {
+  flex: 1;
+  padding: 3rem;
+}
+
+.sidebar ul {
+  list-style: none;
+  padding: 0;
+  margin-top: 2rem;
+}
+
+.sidebar li {
+  padding: 12px;
+  margin-bottom: 8px;
+  border-radius: 8px;
+  cursor: pointer;
+  color: var(--text-dim);
+}
+
+.sidebar li.active {
+  background-color: var(--accent-blue);
+  color: #000;
+  font-weight: bold;
+}
+.action-bar {
+  margin-bottom: 2rem;
+}
+
+.start-btn {
+  background-color: var(--accent-blue);
+  color: #000;
+  padding: 12px 24px;
+  border: none;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+
+.start-btn:hover {
+  transform: scale(1.05);
+}

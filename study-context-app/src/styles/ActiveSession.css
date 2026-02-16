@@ -1,0 +1,43 @@
+.active-session-container {
+  height: 100vh;
+  background-color: #0f172a;
+  display: flex;
+  flex-direction: column;
+  padding: 2rem;
+}
+
+.session-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-bottom: 1px solid #1e293b;
+  padding-bottom: 1rem;
+}
+
+.timer-display {
+  font-family: "Courier New", Courier, monospace;
+  font-size: 3rem;
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.notes-area {
+  flex: 1;
+  width: 100%;
+  background: transparent;
+  border: none;
+  color: white;
+  font-size: 1.2rem;
+  margin-top: 2rem;
+  outline: none;
+  resize: none;
+}
+
+.end-session-btn {
+  background: #ef4444; /* Red for stopping */
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+}

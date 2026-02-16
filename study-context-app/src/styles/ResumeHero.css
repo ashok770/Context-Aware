@@ -1,0 +1,26 @@
+.resume-card {
+  background: var(--card-bg);
+  padding: 2rem;
+  border-radius: 12px;
+  border-left: 5px solid var(--accent-blue);
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
+  max-width: 500px;
+}
+
+.label {
+  color: var(--accent-blue);
+  font-size: 0.8rem;
+  font-weight: bold;
+  letter-spacing: 1px;
+}
+
+.resume-btn {
+  background: var(--accent-blue);
+  color: #000;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 6px;
+  font-weight: 600;
+  cursor: pointer;
+  margin-top: 1rem;
+}

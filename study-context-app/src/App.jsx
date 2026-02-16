@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import "./styles/global.css";
 import "./App.css";
 import ResumeHero from "./components/ResumeHero";
@@ -17,6 +17,22 @@ function App() {
   // This array will store all your finished sessions
   const [sessions, setSessions] = useState([]);
 
+  // Load sessions from the database when the app starts
+  useEffect(() => {
+    const fetchSessions = async () => {
+      try {
+        const response = await fetch("http://localhost:5000/api/sessions");
+        if (response.ok) {
+          const data = await response.json();
+          setSessions(data);
+        }
+      } catch (err) {
+        console.error("Failed to load sessions:", err);
+      }
+    };
+    fetchSessions();
+  }, []);
+
   const handleResume = () => {
     // If user has history, use the last one. If not, use mock.
     const source = sessions.length > 0 ? sessions[0] : mockSession;
@@ -28,7 +44,24 @@ function App() {
     setActiveSubject(""); // Empty for first-time use
     setIsStudying(true);
   };
+  const handleDeleteSession = async (id) => {
+    // Optional: Add a confirmation popup
+    if (!window.confirm("Are you sure you want to delete this session?"))
+      return;
 
+    try {
+      const response = await fetch(`http://localhost:5000/api/sessions/${id}`, {
+        method: "DELETE",
+      });
+
+      if (response.ok) {
+        // Filter out the deleted session from the local state
+        setSessions(sessions.filter((session) => session._id !== id));
+      }
+    } catch (err) {
+      console.error("Error deleting session:", err);
+    }
+  };
   // This function runs when you click "End Session"
   const handleEndSession = async (sessionData) => {
     // 1. Prepare the payload for MongoDB
@@ -36,15 +69,15 @@ function App() {
       subject: activeSubject || "New Subject",
       topic: sessionData.topic,
       notes: sessionData.notes,
-      seconds: sessionData.seconds
+      seconds: sessionData.seconds,
     };
 
     try {
       // 2. Send the POST request to your Express server
-      const response = await fetch('http://localhost:5000/api/sessions', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(sessionToSave)
+      const response = await fetch("http://localhost:5000/api/sessions", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(sessionToSave),
       });
 
       if (response.ok) {
@@ -52,7 +85,7 @@ function App() {
         // 3. Update the UI with the session returned from the DB
         setSessions([savedSession, ...sessions]);
         setIsStudying(false);
-        setCurrentView('sessions'); // Take the user to their history
+        setCurrentView("sessions"); // Take the user to their history
       }
     } catch (err) {
       console.error("Failed to save session to cloud:", err);
@@ -97,7 +130,7 @@ function App() {
               <div className="sessions-list">
                 {sessions.map((s) => (
                   <div
-                    key={s.id}
+                    key={s._id}
                     className="session-card"
                     style={{
                       background: "#1e293b",
@@ -112,16 +145,24 @@ function App() {
                           {s.subject} - {s.topic || "General"}
                         </h3>
                         <p>
-                          Duration: {Math.floor(s.seconds / 60)} mins | Date:{" "}
-                          {s.date}
+                          Duration: {Math.floor(s.seconds / 60)} mins | Date: {" "}
+                          {s.date || (s.createdAt ? new Date(s.createdAt).toLocaleDateString() : "")}
                         </p>
                       </div>
-                      <button
-                        className="view-more-btn"
-                        onClick={() => setSelectedSession(s)}
-                      >
-                        View More →
-                      </button>
+                      <div style={{ display: "flex", gap: 8, alignItems: "center" }}>
+                        <button
+                          className="view-more-btn"
+                          onClick={() => setSelectedSession(s)}
+                        >
+                          View More →
+                        </button>
+                        <button
+                          className="delete-btn"
+                          onClick={() => handleDeleteSession(s._id)}
+                        >
+                          Delete
+                        </button>
+                      </div>
                     </div>
                   </div>
                 ))}

@@ -27,6 +27,19 @@ app.use((err, req, res, next) => {
   res.status(500).json({ error: "Something went wrong!" });
 });
 
+// DELETE a session by ID
+app.delete("/api/sessions/:id", async (req, res) => {
+  try {
+    const deletedSession = await Session.findByIdAndDelete(req.params.id);
+    if (!deletedSession) {
+      return res.status(404).json({ message: "Session not found" });
+    }
+    res.json({ message: "Session deleted successfully" });
+  } catch (err) {
+    res.status(500).json({ message: err.message });
+  }
+});
+
 const PORT = process.env.PORT || 5000;
 app.listen(PORT, () => {
   console.log(`Server running on port ${PORT}`);

@@ -68,3 +68,23 @@ body {
 .start-btn:hover {
   transform: scale(1.05);
 }
+.card-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.delete-btn {
+  background-color: transparent;
+  color: #ef4444; /* Red color */
+  border: 1px solid #ef4444;
+  padding: 4px 12px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.2s;
+}
+
+.delete-btn:hover {
+  background-color: #ef4444;
+  color: white;
+}

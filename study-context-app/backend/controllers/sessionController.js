@@ -1,4 +1,4 @@
-const Session = require('../models/Session');
+const Session = require("../models/Session");
 
 // Create a new session
 exports.createSession = async (req, res) => {
@@ -34,7 +34,7 @@ exports.getSessionById = async (req, res) => {
   try {
     const session = await Session.findById(req.params.id);
     if (!session) {
-      return res.status(404).json({ error: 'Session not found' });
+      return res.status(404).json({ error: "Session not found" });
     }
     res.json(session);
   } catch (error) {
@@ -47,9 +47,9 @@ exports.deleteSession = async (req, res) => {
   try {
     const session = await Session.findByIdAndDelete(req.params.id);
     if (!session) {
-      return res.status(404).json({ error: 'Session not found' });
+      return res.status(404).json({ error: "Session not found" });
     }
-    res.json({ message: 'Session deleted' });
+    res.json({ message: "Session deleted" });
   } catch (error) {
     res.status(500).json({ error: error.message });
   }

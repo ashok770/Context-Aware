@@ -1,0 +1,2 @@
+username = ashoktamata6002_db_user
+pass :4Gx67Y117IyKHevq

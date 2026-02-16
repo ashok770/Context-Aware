@@ -1,11 +1,16 @@
 import React, { useState, useEffect } from "react";
 import "../styles/ActiveTimer.css";
 
-const ActiveTimer = ({ subject, onEnd }) => {
-  const [seconds, setSeconds] = useState(0);
+const ActiveTimer = ({
+  subject,
+  onEnd,
+  initialTime = 0,
+  initialTopic = "",
+}) => {
+  const [seconds, setSeconds] = useState(initialTime || 0);
   // NEW: State for the dynamic parts of the session
   const [localSubject, setLocalSubject] = useState(subject);
-  const [topic, setTopic] = useState("");
+  const [topic, setTopic] = useState(initialTopic || "");
   const [notes, setNotes] = useState("");
 
   useEffect(() => {

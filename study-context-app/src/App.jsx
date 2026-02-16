@@ -12,7 +12,9 @@ function App() {
   const [isStudying, setIsStudying] = useState(false);
   const [currentView, setCurrentView] = useState("dashboard");
   const [activeSubject, setActiveSubject] = useState("");
+  const [activeTopic, setActiveTopic] = useState("");
   const [selectedSession, setSelectedSession] = useState(null);
+  const [initialTime, setInitialTime] = useState(0);
 
   // This array will store all your finished sessions
   const [sessions, setSessions] = useState([]);
@@ -34,14 +36,25 @@ function App() {
   }, []);
 
   const handleResume = () => {
-    // If user has history, use the last one. If not, use mock.
-    const source = sessions.length > 0 ? sessions[0] : mockSession;
-    setActiveSubject(source.subject);
-    setIsStudying(true);
+    if (sessions.length > 0) {
+      const lastRealSession = sessions[0];
+      setActiveSubject(lastRealSession.subject);
+      setActiveTopic(lastRealSession.topic || "");
+      setInitialTime(lastRealSession.seconds || 0);
+      setIsStudying(true);
+    } else {
+      // fallback to mock
+      setActiveSubject(mockSession.subject);
+      setActiveTopic(mockSession.topic || "");
+      setInitialTime(0);
+      setIsStudying(true);
+    }
   };
 
   const handleStartNew = () => {
     setActiveSubject(""); // Empty for first-time use
+    setActiveTopic("");
+    setInitialTime(0);
     setIsStudying(true);
   };
   const handleDeleteSession = async (id) => {

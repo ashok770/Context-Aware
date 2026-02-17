@@ -6,6 +6,8 @@ const Planner = ({ sessions = [] }) => {
   const [taskInput, setTaskInput] = React.useState("");
   const [selectedCategory, setSelectedCategory] = React.useState("general");
   const [selectedPriority, setSelectedPriority] = React.useState("medium");
+  const [dueDateInput, setDueDateInput] = React.useState("");
+  const [resourcesInput, setResourcesInput] = React.useState("");
 
   const categories = [
     { id: "general", label: "General", color: "#38bdf8" },
@@ -43,12 +45,18 @@ const Planner = ({ sessions = [] }) => {
           text: taskInput,
           category: selectedCategory,
           priority: selectedPriority,
+          dueDate: dueDateInput || null,
+          resources: resourcesInput
+            ? resourcesInput.split(',').map((r) => r.trim()).filter(Boolean)
+            : [],
         }),
       });
       if (res.ok) {
         const saved = await res.json();
         setTasks([saved, ...tasks]);
         setTaskInput("");
+        setDueDateInput("");
+        setResourcesInput("");
       }
     } catch (err) {
       console.error("Failed to add task", err);
@@ -169,6 +177,19 @@ const Planner = ({ sessions = [] }) => {
             </option>
           ))}
         </select>
+        <input
+          type="date"
+          value={dueDateInput}
+          onChange={(e) => setDueDateInput(e.target.value)}
+          className="due-date-input"
+        />
+        <input
+          type="text"
+          placeholder="Resources (comma-separated)"
+          value={resourcesInput}
+          onChange={(e) => setResourcesInput(e.target.value)}
+          className="resources-input"
+        />
         <button onClick={addTask}>Add Task</button>
       </div>
 
@@ -184,7 +205,7 @@ const Planner = ({ sessions = [] }) => {
               const categoryColor = getCategoryColor(task.category);
               return (
                 <div
-                  key={task.id}
+                  key={task._id}
                   className={`planner-task ${task.completed ? "completed" : ""}`}
                   style={{
                     background: task.completed ? "#0f172a" : "#1e293b",
@@ -200,12 +221,25 @@ const Planner = ({ sessions = [] }) => {
                       >
                         {priorityBadge.label}
                       </span>
-                      <span className="task-date">{task.createdAt}</span>
+                      <span className="task-date">
+                        {task.dueDate
+                          ? new Date(task.dueDate).toLocaleDateString()
+                          : new Date(task.createdAt).toLocaleDateString()}
+                      </span>
+                      {task.resources && task.resources.length > 0 && (
+                        <div className="task-resources">
+                          {task.resources.map((r, i) => (
+                            <a key={i} href={r} target="_blank" rel="noreferrer">
+                              {r}
+                            </a>
+                          ))}
+                        </div>
+                      )}
                     </div>
                   </div>
                   <div className="task-actions">
                     <button
-                      onClick={() => toggleTask(task.id)}
+                      onClick={() => toggleTask(task._id)}
                       className={`toggle-btn ${task.completed ? "completed" : ""}`}
                       style={{
                         background: task.completed ? "#10b981" : "#6b7280",
@@ -214,7 +248,7 @@ const Planner = ({ sessions = [] }) => {
                       {task.completed ? "✓" : "○"}
                     </button>
                     <button
-                      onClick={() => deleteTask(task.id)}
+                      onClick={() => deleteTask(task._id)}
                       className="delete-btn"
                     >
                       ✕

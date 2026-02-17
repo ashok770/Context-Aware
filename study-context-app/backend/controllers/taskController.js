@@ -2,8 +2,14 @@ const Task = require("../models/Task");
 
 exports.createTask = async (req, res) => {
   try {
-    const { text, category, priority } = req.body;
-    const task = new Task({ text, category, priority });
+    const { text, category, priority, dueDate, resources } = req.body;
+    const task = new Task({
+      text,
+      category,
+      priority,
+      dueDate: dueDate || null,
+      resources: Array.isArray(resources) ? resources : [],
+    });
     const saved = await task.save();
     res.status(201).json(saved);
   } catch (err) {

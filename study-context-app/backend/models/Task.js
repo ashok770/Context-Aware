@@ -6,6 +6,8 @@ const taskSchema = new mongoose.Schema(
     completed: { type: Boolean, default: false },
     category: { type: String, default: "general" },
     priority: { type: String, default: "medium" },
+    dueDate: { type: Date, default: null },
+    resources: { type: [String], default: [] },
   },
   { timestamps: true },
 );

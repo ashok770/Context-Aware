@@ -83,6 +83,7 @@ function App() {
       topic: sessionData.topic,
       notes: sessionData.notes,
       seconds: sessionData.seconds,
+      resources: sessionData.resources || [],
     };
 
     try {

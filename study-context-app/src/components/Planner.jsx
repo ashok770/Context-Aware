@@ -47,7 +47,10 @@ const Planner = ({ sessions = [] }) => {
           priority: selectedPriority,
           dueDate: dueDateInput || null,
           resources: resourcesInput
-            ? resourcesInput.split(',').map((r) => r.trim()).filter(Boolean)
+            ? resourcesInput
+                .split(",")
+                .map((r) => r.trim())
+                .filter(Boolean)
             : [],
         }),
       });
@@ -229,7 +232,12 @@ const Planner = ({ sessions = [] }) => {
                       {task.resources && task.resources.length > 0 && (
                         <div className="task-resources">
                           {task.resources.map((r, i) => (
-                            <a key={i} href={r} target="_blank" rel="noreferrer">
+                            <a
+                              key={i}
+                              href={r}
+                              target="_blank"
+                              rel="noreferrer"
+                            >
                               {r}
                             </a>
                           ))}

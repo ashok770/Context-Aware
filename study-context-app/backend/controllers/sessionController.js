@@ -3,13 +3,14 @@ const Session = require("../models/Session");
 // Create a new session
 exports.createSession = async (req, res) => {
   try {
-    const { subject, topic, notes, seconds } = req.body;
+    const { subject, topic, notes, seconds, resources } = req.body;
 
     const newSession = new Session({
       subject,
       topic,
       notes,
       seconds,
+      resources: Array.isArray(resources) ? resources : [],
     });
 
     const savedSession = await newSession.save();

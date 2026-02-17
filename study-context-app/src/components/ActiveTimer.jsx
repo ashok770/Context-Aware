@@ -12,6 +12,35 @@ const ActiveTimer = ({
   const [localSubject, setLocalSubject] = useState(subject);
   const [topic, setTopic] = useState(initialTopic || "");
   const [notes, setNotes] = useState("");
+  const [resources, setResources] = useState([]);
+
+  const handleUpload = () => {
+    if (!window.cloudinary) {
+      console.error("Cloudinary widget not loaded");
+      return;
+    }
+
+    window.cloudinary.openUploadWidget(
+      {
+        cloudName: "dtuocgtis", // corrected Cloud Name
+        uploadPreset: "study_context_preset", // Your unsigned preset
+        sources: ["local", "camera", "url"],
+        multiple: false,
+        styles: {
+          palette: {
+            window: "#0F172A",
+            sourceTabIcon: "#38BDF8",
+            link: "#38BDF8",
+          },
+        },
+      },
+      (error, result) => {
+        if (!error && result && result.event === "success") {
+          setResources((prev) => [...prev, result.info.secure_url]);
+        }
+      },
+    );
+  };
 
   useEffect(() => {
     const interval = setInterval(() => {
@@ -52,10 +81,13 @@ const ActiveTimer = ({
             onChange={(e) => setTopic(e.target.value)}
           />
         </div>
+        <button className="upload-btn" onClick={handleUpload}>
+          📁 Add Resource (Image/Note)
+        </button>
         <button
           className="end-btn"
           onClick={() =>
-            onEnd({ seconds, topic, notes, subject: localSubject })
+            onEnd({ seconds, topic, notes, subject: localSubject, resources })
           }
         >
           End Session
@@ -70,6 +102,18 @@ const ActiveTimer = ({
         value={notes}
         onChange={(e) => setNotes(e.target.value)} // Now you can actually type!
       />
+      <div className="upload-row">
+        <button className="upload-btn" onClick={handleUpload}>
+          Upload Resource (image)
+        </button>
+        <div className="uploaded-resources">
+          {resources.map((url, i) => (
+            <a key={i} href={url} target="_blank" rel="noreferrer">
+              Resource {i + 1}
+            </a>
+          ))}
+        </div>
+      </div>
     </div>
   );
 };

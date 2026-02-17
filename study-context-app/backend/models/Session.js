@@ -1,19 +1,13 @@
 const mongoose = require("mongoose");
 
-const sessionSchema = new mongoose.Schema(
-  {
-    subject: {
-      type: String,
-      required: true,
-    },
-    topic: String,
-    notes: String,
-    seconds: {
-      type: Number,
-      required: true,
-    },
-  },
-  { timestamps: true },
-);
+const SessionSchema = new mongoose.Schema({
+  subject: { type: String, required: true },
+  topic: { type: String },
+  notes: { type: String },
+  seconds: { type: Number, default: 0 },
+  // New field to store the resource URLs
+  resources: { type: [String], default: [] },
+  date: { type: Date, default: Date.now },
+});
 
-module.exports = mongoose.model("Session", sessionSchema);
+module.exports = mongoose.model("Session", SessionSchema);

@@ -278,3 +278,16 @@
   color: #0f172a;
   box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
 }
+.day-box.completed {
+  background: linear-gradient(135deg, #38bdf8, #0ea5e9);
+  color: #0f172a;
+  border: none;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.5);
+  font-weight: 800;
+}
+
+.day-box:hover {
+  border-color: #38bdf8;
+  transform: translateY(-2px);
+  transition: all 0.2s;
+}

@@ -291,3 +291,61 @@
   transform: translateY(-2px);
   transition: all 0.2s;
 }
+
+/* Heatmap Consistency Tracker */
+.heatmap-section {
+  margin-bottom: 2rem;
+  background: #1e293b;
+  padding: 1.5rem;
+  border-radius: 12px;
+  border: 1px solid #334155;
+}
+
+.heatmap-section h3 {
+  color: #38bdf8;
+  margin: 0 0 1rem 0;
+  font-size: 1.2rem;
+}
+
+.heatmap-grid {
+  display: grid;
+  grid-template-columns: repeat(10, 1fr);
+  gap: 10px;
+  background: #0f172a;
+  padding: 20px;
+  border-radius: 12px;
+  border: 1px solid #334155;
+}
+
+.heat-box {
+  aspect-ratio: 1;
+  background: #0f172a;
+  border-radius: 4px;
+  border: 1px solid #1e293b;
+  transition: all 0.2s;
+}
+
+.heat-box.active {
+  background: #38bdf8;
+  box-shadow: 0 0 10px rgba(56, 189, 248, 0.6);
+  border: none;
+}
+
+.heat-box.today {
+  border: 2px solid #38bdf8;
+}
+
+.heatmap-legend {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 1rem;
+  justify-content: center;
+  color: #94a3b8;
+  font-size: 0.85rem;
+}
+
+.heatmap-legend .heat-box {
+  width: 20px;
+  height: 20px;
+}

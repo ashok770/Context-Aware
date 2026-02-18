@@ -1,6 +1,39 @@
 import React from "react";
 import "../styles/Planner.css";
 
+const Heatmap = ({ sessions }) => {
+  const days = Array.from({ length: 30 }, (_, i) => i + 1);
+  const today = new Date().getDate();
+
+  const hasStudied = (day) => {
+    return sessions.some(session => {
+      const d = new Date(session.date);
+      return d.getDate() === day && d.getMonth() === new Date().getMonth();
+    });
+  };
+
+  return (
+    <div className="heatmap-section">
+      <h3>Consistency Tracker</h3>
+      <div className="heatmap-grid">
+        {days.map(day => (
+          <div 
+            key={day} 
+            className={`heat-box ${hasStudied(day) ? 'active' : ''} ${day === today ? 'today' : ''}`}
+            title={`Day ${day}`}
+          />
+        ))}
+      </div>
+      <div className="heatmap-legend">
+        <span>Less</span>
+        <div className="heat-box" />
+        <div className="heat-box active" />
+        <span>More</span>
+      </div>
+    </div>
+  );
+};
+
 const Planner = ({ sessions = [] }) => {
   const [tasks, setTasks] = React.useState([]);
   const [taskInput, setTaskInput] = React.useState("");
@@ -120,6 +153,8 @@ const Planner = ({ sessions = [] }) => {
 
   return (
     <div className="planner-view">
+      <Heatmap sessions={sessions} />
+      
       <div className="planner-header">
         <h1>Study Planner</h1>
         {totalTasks > 0 && (

@@ -64,6 +64,31 @@ const SessionDetail = ({ session, onClose }) => {
             </div>
           </div>
 
+          {session.resources && session.resources.length > 0 && (
+            <div className="detail-section">
+              <h3>Resources</h3>
+              <div className="resources-grid">
+                {session.resources.map((url, index) => (
+                  <div key={index} className="resource-card">
+                    {url.endsWith('.pdf') ? (
+                      <div className="pdf-preview" onClick={() => window.open(url, '_blank')}>
+                        <div className="pdf-icon">📄</div>
+                        <span>View Study Note {index + 1}</span>
+                      </div>
+                    ) : (
+                      <img
+                        src={url}
+                        alt="Resource"
+                        className="img-preview"
+                        onClick={() => window.open(url, '_blank')}
+                      />
+                    )}
+                  </div>
+                ))}
+              </div>
+            </div>
+          )}
+
           <div className="detail-footer">
             <button className="modal-btn" onClick={onClose}>
               Close

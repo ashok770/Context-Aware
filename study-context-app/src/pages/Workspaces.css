@@ -1,0 +1,127 @@
+.workspaces-container {
+  padding: 2rem;
+  color: #f1f5f9;
+}
+
+.workspaces-header {
+  margin-bottom: 2rem;
+}
+
+.workspaces-header h1 {
+  font-size: 2rem;
+  margin: 0 0 0.5rem 0;
+  color: #38bdf8;
+}
+
+.workspaces-header p {
+  color: #94a3b8;
+  margin: 0;
+}
+
+.workspace-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: 1.5rem;
+}
+
+.workspace-card {
+  background: #1e293b;
+  border: 1px solid #334155;
+  border-radius: 12px;
+  padding: 1.5rem;
+  transition: all 0.3s;
+}
+
+.workspace-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+  border-color: #38bdf8;
+}
+
+.workspace-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1rem;
+  padding-bottom: 1rem;
+  border-bottom: 2px solid #334155;
+}
+
+.workspace-header h2 {
+  margin: 0;
+  color: #38bdf8;
+  font-size: 1.3rem;
+}
+
+.session-count {
+  background: #0f172a;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-size: 0.85rem;
+  color: #94a3b8;
+}
+
+.workspace-stats {
+  display: flex;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.stat {
+  flex: 1;
+  background: #0f172a;
+  padding: 0.75rem;
+  border-radius: 8px;
+  text-align: center;
+}
+
+.stat-label {
+  display: block;
+  font-size: 0.75rem;
+  color: #94a3b8;
+  margin-bottom: 0.25rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stat-value {
+  display: block;
+  font-size: 1.2rem;
+  color: #38bdf8;
+  font-weight: bold;
+}
+
+.recent-topics {
+  margin-top: 1rem;
+}
+
+.recent-topics h4 {
+  margin: 0 0 0.5rem 0;
+  color: #94a3b8;
+  font-size: 0.9rem;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.recent-topics ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.recent-topics li {
+  padding: 0.5rem;
+  background: #0f172a;
+  margin-bottom: 0.5rem;
+  border-radius: 6px;
+  color: #e2e8f0;
+  font-size: 0.9rem;
+  border-left: 3px solid #38bdf8;
+}
+
+.empty-workspaces {
+  text-align: center;
+  padding: 3rem;
+  color: #64748b;
+  font-size: 1.1rem;
+}

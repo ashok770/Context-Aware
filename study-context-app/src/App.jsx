@@ -7,6 +7,7 @@ import Sidebar from "./components/Sidebar";
 import Planner from "./components/Planner";
 import SessionDetail from "./components/SessionDetail";
 import Library from "./pages/Library.jsx";
+import Workspaces from "./pages/Workspaces.jsx";
 import { mockSession } from "./data";
 
 function App() {
@@ -212,12 +213,7 @@ function App() {
 
         {currentView === "library" && <Library sessions={sessions} />}
 
-        {currentView === "workspaces" && (
-          <div className="workspaces-view">
-            <h1>Workspaces</h1>
-            <p>Coming soon: Group your sessions by project or subject!</p>
-          </div>
-        )}
+        {currentView === "workspaces" && <Workspaces sessions={sessions} />}
       </main>
     </div>
   );

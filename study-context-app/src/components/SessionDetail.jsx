@@ -51,14 +51,14 @@ const SessionDetail = ({ session, onClose }) => {
             </div>
           </div>
 
-          <div className="detail-section">
-            <h3>Session Notes & Summary</h3>
-            <div className="notes-container">
-              {session.notes ? (
-                <p className="session-notes">{session.notes}</p>
+          <div className="session-summary-box">
+            <h3 className="section-title">AI Insights & Summary</h3>
+            <div className="summary-content">
+              {session.summary ? (
+                <p className="ai-text">{session.summary}</p>
               ) : (
-                <p className="empty-notes">
-                  No notes were added in this session.
+                <p className="placeholder-text">
+                  {session.notes || "No notes were added to this session."}
                 </p>
               )}
             </div>

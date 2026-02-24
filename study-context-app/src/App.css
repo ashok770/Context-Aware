@@ -278,3 +278,33 @@
   height: 100%;
   object-fit: cover;
 }
+
+/* AI Summary Section */
+.session-summary-box {
+  background: rgba(15, 23, 42, 0.5);
+  border-left: 4px solid #38bdf8;
+  padding: 15px;
+  border-radius: 8px;
+  margin-top: 20px;
+}
+
+.section-title {
+  font-size: 0.9rem;
+  color: #38bdf8;
+  margin: 0 0 8px 0;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.ai-text {
+  color: #e2e8f0;
+  font-style: italic;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.placeholder-text {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}

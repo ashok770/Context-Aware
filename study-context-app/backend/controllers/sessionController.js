@@ -1,14 +1,19 @@
 const Session = require("../models/Session");
+const { generateAISummary } = require("../utils/aiHelper");
 
 // Create a new session
 exports.createSession = async (req, res) => {
   try {
     const { subject, topic, notes, seconds, resources } = req.body;
 
+    // Generate AI summary
+    const aiSummary = await generateAISummary(topic, notes);
+
     const newSession = new Session({
       subject,
       topic,
       notes,
+      summary: aiSummary,
       seconds,
       resources: Array.isArray(resources) ? resources : [],
     });

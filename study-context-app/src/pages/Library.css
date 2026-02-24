@@ -1,0 +1,62 @@
+.library-container {
+  padding: 40px;
+  color: white;
+  background: #0f172a;
+  min-height: 100vh;
+}
+
+.library-header h1 {
+  font-size: 2.5rem;
+  color: #38bdf8;
+  margin-bottom: 10px;
+}
+
+.resource-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 25px;
+  margin-top: 30px;
+}
+
+.resource-card {
+  background: #1e293b;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: transform 0.3s ease;
+  border: 1px solid #334155;
+}
+
+.resource-card:hover {
+  transform: translateY(-5px);
+  border-color: #38bdf8;
+}
+
+.file-preview {
+  height: 160px;
+  background: #334155;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.file-preview img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.file-info {
+  padding: 15px;
+}
+
+.view-btn {
+  display: block;
+  margin-top: 10px;
+  text-align: center;
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 8px;
+  border-radius: 6px;
+  text-decoration: none;
+  font-weight: bold;
+}

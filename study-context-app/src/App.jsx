@@ -6,6 +6,7 @@ import ActiveTimer from "./components/ActiveTimer";
 import Sidebar from "./components/Sidebar";
 import Planner from "./components/Planner";
 import SessionDetail from "./components/SessionDetail";
+import Library from "./pages/Library";
 import { mockSession } from "./data";
 
 function App() {
@@ -208,6 +209,8 @@ function App() {
         )}
 
         {currentView === "planner" && <Planner sessions={sessions} />}
+
+        {currentView === "library" && <Library />}
       </main>
     </div>
   );

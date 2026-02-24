@@ -9,19 +9,31 @@ const Sidebar = ({ currentView, setCurrentView }) => {
           className={currentView === "dashboard" ? "active" : ""}
           onClick={() => setCurrentView("dashboard")}
         >
-          Dashboard
+          🏠 Dashboard
         </li>
         <li
           className={currentView === "sessions" ? "active" : ""}
           onClick={() => setCurrentView("sessions")}
         >
-          Sessions
+          📚 Sessions
         </li>
         <li
           className={currentView === "planner" ? "active" : ""}
           onClick={() => setCurrentView("planner")}
         >
-          Planner
+          ✅ Planner
+        </li>
+        <li
+          className={currentView === "library" ? "active" : ""}
+          onClick={() => setCurrentView("library")}
+        >
+          📁 Library
+        </li>
+        <li
+          className={currentView === "workspaces" ? "active" : ""}
+          onClick={() => setCurrentView("workspaces")}
+        >
+          🗂️ Workspaces
         </li>
       </ul>
     </nav>

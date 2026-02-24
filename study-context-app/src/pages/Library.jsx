@@ -1,33 +1,23 @@
 import React, { useState, useEffect } from "react";
-import axios from "axios";
 import "./Library.css";
 
-const Library = () => {
+const Library = ({ sessions }) => {
   const [resources, setResources] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    const fetchResources = async () => {
-      try {
-        const res = await axios.get("http://localhost:5000/api/sessions");
-        // Extracting resources from all sessions and flattening the array
-        const allFiles = res.data.flatMap((session) =>
-          session.resources.map((link) => ({
-            url: link,
-            topic: session.topic,
-            date: new Date(session.date).toLocaleDateString(),
-            type: link.match(/\.(jpeg|jpg|gif|png)$/) ? "image" : "document",
-          })),
-        );
-        setResources(allFiles);
-        setLoading(false);
-      } catch (err) {
-        console.error("Error fetching library:", err);
-        setLoading(false);
-      }
-    };
-    fetchResources();
-  }, []);
+    // Extract resources from sessions prop instead of fetching
+    const allFiles = sessions.flatMap((session) =>
+      session.resources.map((link) => ({
+        url: link,
+        topic: session.topic,
+        date: new Date(session.date || session.createdAt).toLocaleDateString(),
+        type: link.match(/\.(jpeg|jpg|gif|png)$/) ? "image" : "document",
+      })),
+    );
+    setResources(allFiles);
+    setLoading(false);
+  }, [sessions]);
 
   return (
     <div className="library-container">

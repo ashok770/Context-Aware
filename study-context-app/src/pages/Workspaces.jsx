@@ -3,6 +3,8 @@ import "./Workspaces.css";
 
 const Workspaces = ({ sessions }) => {
   const [selectedWorkspace, setSelectedWorkspace] = useState(null);
+  const [workspaceSummary, setWorkspaceSummary] = useState("");
+  const [loadingSummary, setLoadingSummary] = useState(false);
 
   const groupedSessions = sessions.reduce((acc, session) => {
     const subject = session.subject || "Uncategorized";
@@ -12,6 +14,34 @@ const Workspaces = ({ sessions }) => {
     acc[subject].push(session);
     return acc;
   }, {});
+
+  const generateWorkspaceSummary = async (subject) => {
+    setLoadingSummary(true);
+    const workspaceSessions = groupedSessions[subject];
+    const allTopics = workspaceSessions.map(s => s.topic || "General").join(", ");
+    const allNotes = workspaceSessions.map(s => s.notes || "").join(" ");
+    const totalTime = workspaceSessions.reduce((sum, s) => sum + s.seconds, 0);
+
+    try {
+      const response = await fetch("http://localhost:5000/api/workspace-summary", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          subject,
+          topics: allTopics,
+          notes: allNotes,
+          sessionCount: workspaceSessions.length,
+          totalTime: Math.floor(totalTime / 60)
+        })
+      });
+      const data = await response.json();
+      setWorkspaceSummary(data.summary);
+    } catch (error) {
+      console.error("Error generating workspace summary:", error);
+      setWorkspaceSummary("Unable to generate summary at this time.");
+    }
+    setLoadingSummary(false);
+  };
 
   if (selectedWorkspace) {
     const workspaceSessions = groupedSessions[selectedWorkspace];
@@ -23,7 +53,20 @@ const Workspaces = ({ sessions }) => {
         <header className="detail-header">
           <h1>{selectedWorkspace}</h1>
           <p>{workspaceSessions.length} sessions</p>
+          <button 
+            className="summary-btn" 
+            onClick={() => generateWorkspaceSummary(selectedWorkspace)}
+            disabled={loadingSummary}
+          >
+            {loadingSummary ? "Generating..." : "🤖 Generate AI Workspace Summary"}
+          </button>
         </header>
+        {workspaceSummary && (
+          <div className="workspace-summary-box">
+            <h3>📊 Workspace Progress Summary</h3>
+            <p>{workspaceSummary}</p>
+          </div>
+        )}
         <div className="sessions-list">
           {workspaceSessions.map((session) => (
             <div key={session._id} className="session-item">

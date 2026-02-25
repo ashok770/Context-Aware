@@ -4,6 +4,7 @@ const cors = require("cors");
 const connectDB = require("./config/db");
 const sessionRoutes = require("./routes/sessions");
 const taskRoutes = require("./routes/tasks");
+const workspaceSummaryRoutes = require("./routes/workspaceSummary");
 const { GoogleGenerativeAI } = require("@google/generative-ai");
 
 // Initialize Gemini AI
@@ -47,6 +48,7 @@ app.get("/api/health", (req, res) => {
 
 app.use("/api/sessions", sessionRoutes);
 app.use("/api/tasks", taskRoutes);
+app.use("/api", workspaceSummaryRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {

@@ -252,3 +252,47 @@
 .workspace-card {
   cursor: pointer;
 }
+
+.summary-btn {
+  background: #38bdf8;
+  color: #000;
+  border: none;
+  padding: 0.75rem 1.5rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-top: 1rem;
+  transition: all 0.3s;
+}
+
+.summary-btn:hover:not(:disabled) {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+}
+
+.summary-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.workspace-summary-box {
+  background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
+  border: 2px solid #38bdf8;
+  border-radius: 12px;
+  padding: 1.5rem;
+  margin-bottom: 2rem;
+  box-shadow: 0 0 20px rgba(56, 189, 248, 0.3);
+}
+
+.workspace-summary-box h3 {
+  margin: 0 0 1rem 0;
+  color: #38bdf8;
+  font-size: 1.2rem;
+}
+
+.workspace-summary-box p {
+  margin: 0;
+  color: #e2e8f0;
+  line-height: 1.8;
+  font-size: 1rem;
+}

@@ -296,3 +296,10 @@
   line-height: 1.8;
   font-size: 1rem;
 }
+
+.summary-content {
+  color: #e2e8f0;
+  line-height: 1.8;
+  white-space: pre-wrap;
+  font-size: 0.95rem;
+}

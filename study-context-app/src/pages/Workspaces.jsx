@@ -3,7 +3,7 @@ import "./Workspaces.css";
 
 const Workspaces = ({ sessions }) => {
   const [selectedWorkspace, setSelectedWorkspace] = useState(null);
-  const [workspaceSummary, setWorkspaceSummary] = useState("");
+  const [workspaceSummaries, setWorkspaceSummaries] = useState({});
   const [loadingSummary, setLoadingSummary] = useState(false);
 
   const groupedSessions = sessions.reduce((acc, session) => {
@@ -16,6 +16,8 @@ const Workspaces = ({ sessions }) => {
   }, {});
 
   const generateWorkspaceSummary = async (subject) => {
+    if (workspaceSummaries[subject]) return; // Don't regenerate if already exists
+    
     setLoadingSummary(true);
     const workspaceSessions = groupedSessions[subject];
     const allTopics = workspaceSessions.map(s => s.topic || "General").join(", ");
@@ -35,10 +37,10 @@ const Workspaces = ({ sessions }) => {
         })
       });
       const data = await response.json();
-      setWorkspaceSummary(data.summary);
+      setWorkspaceSummaries(prev => ({ ...prev, [subject]: data.summary }));
     } catch (error) {
       console.error("Error generating workspace summary:", error);
-      setWorkspaceSummary("Unable to generate summary at this time.");
+      setWorkspaceSummaries(prev => ({ ...prev, [subject]: "Unable to generate summary at this time." }));
     }
     setLoadingSummary(false);
   };
@@ -61,10 +63,10 @@ const Workspaces = ({ sessions }) => {
             {loadingSummary ? "Generating..." : "🤖 Generate AI Workspace Summary"}
           </button>
         </header>
-        {workspaceSummary && (
+        {workspaceSummaries[selectedWorkspace] && (
           <div className="workspace-summary-box">
             <h3>📊 Workspace Progress Summary</h3>
-            <p>{workspaceSummary}</p>
+            <div className="summary-content">{workspaceSummaries[selectedWorkspace]}</div>
           </div>
         )}
         <div className="sessions-list">

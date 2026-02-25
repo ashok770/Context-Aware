@@ -11,15 +11,27 @@ router.post("/workspace-summary", async (req, res) => {
 
     const prompt = `I am a CSE student. Provide a comprehensive progress summary for my "${subject}" workspace.
     
-    I have completed ${sessionCount} study sessions with a total of ${totalTime} minutes.
-    Topics covered: ${topics}
-    
-    Based on these notes: ${notes.substring(0, 1000)}
-    
-    Provide:
-    1. Overall progress assessment (2-3 sentences)
-    2. Key concepts mastered
-    3. Suggested next steps for improvement`;
+I have completed ${sessionCount} study sessions with a total of ${totalTime} minutes.
+Topics covered: ${topics}
+
+Based on these notes: ${notes.substring(0, 1000)}
+
+Provide a well-structured summary with:
+
+**📊 Overall Progress:**
+(2-3 sentences about learning journey and consistency)
+
+**✅ Key Concepts Mastered:**
+• Concept 1
+• Concept 2
+• Concept 3
+
+**🎯 Suggested Next Steps:**
+• Action 1
+• Action 2
+• Action 3
+
+Keep it motivating and actionable!`;
 
     const response = await fetch(apiUrl, {
       method: "POST",

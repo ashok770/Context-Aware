@@ -8,6 +8,7 @@ import Planner from "./components/Planner";
 import SessionDetail from "./components/SessionDetail";
 import Library from "./pages/Library.jsx";
 import Workspaces from "./pages/Workspaces.jsx";
+import Analytics from "./components/Analytics.jsx";
 import { mockSession } from "./data";
 
 function App() {
@@ -214,6 +215,8 @@ function App() {
         {currentView === "library" && <Library sessions={sessions} />}
 
         {currentView === "workspaces" && <Workspaces sessions={sessions} />}
+
+        {currentView === "analytics" && <Analytics sessions={sessions} />}
       </main>
     </div>
   );

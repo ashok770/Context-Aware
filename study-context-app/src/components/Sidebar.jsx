@@ -35,6 +35,12 @@ const Sidebar = ({ currentView, setCurrentView }) => {
         >
           🗂️ Workspaces
         </li>
+        <li
+          className={currentView === "analytics" ? "active" : ""}
+          onClick={() => setCurrentView("analytics")}
+        >
+          📊 Analytics
+        </li>
       </ul>
     </nav>
   );

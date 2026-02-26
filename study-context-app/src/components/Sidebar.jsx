@@ -1,6 +1,11 @@
 import React from "react";
 
-const Sidebar = ({ currentView, setCurrentView }) => {
+const Sidebar = ({ currentView, setCurrentView, user, setUser }) => {
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    setUser(null);
+  };
+
   return (
     <nav className="sidebar">
       <h1 className="logo">StudyContext</h1>
@@ -42,6 +47,12 @@ const Sidebar = ({ currentView, setCurrentView }) => {
           📊 Analytics
         </li>
       </ul>
+      <div className="sidebar-footer">
+        <p className="user-name">👤 {user?.name || "Student"}</p>
+        <button className="logout-btn" onClick={handleLogout}>
+          🚪 Logout
+        </button>
+      </div>
     </nav>
   );
 };

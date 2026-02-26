@@ -9,24 +9,37 @@ import SessionDetail from "./components/SessionDetail";
 import Library from "./pages/Library.jsx";
 import Workspaces from "./pages/Workspaces.jsx";
 import Analytics from "./components/Analytics.jsx";
+import Auth from "./pages/Auth.jsx";
 import { mockSession } from "./data";
 
 function App() {
+  const [user, setUser] = useState(null);
   const [isStudying, setIsStudying] = useState(false);
   const [currentView, setCurrentView] = useState("dashboard");
   const [activeSubject, setActiveSubject] = useState("");
   const [activeTopic, setActiveTopic] = useState("");
   const [selectedSession, setSelectedSession] = useState(null);
   const [resumeTime, setResumeTime] = useState(0);
-
-  // This array will store all your finished sessions
   const [sessions, setSessions] = useState([]);
 
-  // Load sessions from the database when the app starts
+  // Check for existing token on load
   useEffect(() => {
+    const token = localStorage.getItem('token');
+    if (token) {
+      setUser({ name: "Student" });
+    }
+  }, []);
+
+  // Load sessions from the database when user is authenticated
+  useEffect(() => {
+    if (!user) return;
+    
     const fetchSessions = async () => {
       try {
-        const response = await fetch("http://localhost:5000/api/sessions");
+        const token = localStorage.getItem('token');
+        const response = await fetch("http://localhost:5000/api/sessions", {
+          headers: { 'x-auth-token': token }
+        });
         if (response.ok) {
           const data = await response.json();
           setSessions(data);
@@ -36,7 +49,7 @@ function App() {
       }
     };
     fetchSessions();
-  }, []);
+  }, [user]);
 
   const handleResume = () => {
     if (sessions.length > 0) {
@@ -61,26 +74,24 @@ function App() {
     setIsStudying(true);
   };
   const handleDeleteSession = async (id) => {
-    // Optional: Add a confirmation popup
     if (!window.confirm("Are you sure you want to delete this session?"))
       return;
 
     try {
+      const token = localStorage.getItem('token');
       const response = await fetch(`http://localhost:5000/api/sessions/${id}`, {
         method: "DELETE",
+        headers: { 'x-auth-token': token }
       });
 
       if (response.ok) {
-        // Filter out the deleted session from the local state
         setSessions(sessions.filter((session) => session._id !== id));
       }
     } catch (err) {
       console.error("Error deleting session:", err);
     }
   };
-  // This function runs when you click "End Session"
   const handleEndSession = async (sessionData) => {
-    // 1. Prepare the payload for MongoDB — prefer subject from the timer
     const sessionToSave = {
       subject: sessionData.subject || activeSubject || "New Subject",
       topic: sessionData.topic,
@@ -90,25 +101,31 @@ function App() {
     };
 
     try {
-      // 2. Send the POST request to your Express server
+      const token = localStorage.getItem('token');
       const response = await fetch("http://localhost:5000/api/sessions", {
         method: "POST",
-        headers: { "Content-Type": "application/json" },
+        headers: { 
+          "Content-Type": "application/json",
+          'x-auth-token': token
+        },
         body: JSON.stringify(sessionToSave),
       });
 
       if (response.ok) {
         const savedSession = await response.json();
-        // 3. Update the UI with the session returned from the DB
         setSessions([savedSession, ...sessions]);
         setIsStudying(false);
-        setCurrentView("sessions"); // Take the user to their history
+        setCurrentView("sessions");
       }
     } catch (err) {
       console.error("Failed to save session to cloud:", err);
       alert("Cloud save failed, but your session is still in local state!");
     }
   };
+
+  if (!user) {
+    return <Auth setUser={setUser} />;
+  }
 
   if (isStudying) {
     return (
@@ -123,7 +140,7 @@ function App() {
 
   return (
     <div className="app-container">
-      <Sidebar currentView={currentView} setCurrentView={setCurrentView} />
+      <Sidebar currentView={currentView} setCurrentView={setCurrentView} user={user} setUser={setUser} />
 
       <main className="main-content">
         {currentView === "dashboard" && (

@@ -21,9 +21,12 @@ body {
 
 .sidebar {
   width: 250px;
-  background-color: #111827; /* Slightly darker than main bg */
+  background-color: #111827;
   padding: 2rem;
   border-right: 1px solid #1e293b;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
 }
 
 .main-content {
@@ -86,5 +89,34 @@ body {
 
 .delete-btn:hover {
   background-color: #ef4444;
+  color: white;
+}
+
+.sidebar-footer {
+  margin-top: auto;
+  padding-top: 1rem;
+  border-top: 1px solid #1e293b;
+}
+
+.user-name {
+  color: var(--text-dim);
+  font-size: 0.9rem;
+  margin: 0 0 0.5rem 0;
+}
+
+.logout-btn {
+  width: 100%;
+  background: transparent;
+  color: #ef4444;
+  border: 1px solid #ef4444;
+  padding: 0.5rem;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.logout-btn:hover {
+  background: #ef4444;
   color: white;
 }

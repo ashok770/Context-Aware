@@ -10,6 +10,7 @@ exports.createSession = async (req, res) => {
     const aiSummary = await generateAISummary(topic, notes);
 
     const newSession = new Session({
+      userId: req.user.userId,
       subject,
       topic,
       notes,
@@ -28,7 +29,7 @@ exports.createSession = async (req, res) => {
 // Get all sessions
 exports.getSessions = async (req, res) => {
   try {
-    const sessions = await Session.find().sort({ createdAt: -1 });
+    const sessions = await Session.find({ userId: req.user.userId }).sort({ createdAt: -1 });
     res.json(sessions);
   } catch (error) {
     res.status(500).json({ error: error.message });

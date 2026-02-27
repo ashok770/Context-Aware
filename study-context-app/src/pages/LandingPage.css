@@ -1,0 +1,183 @@
+.landing-container {
+  background: #0f172a;
+  color: white;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.landing-nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 20px 80px;
+}
+
+.landing-nav .logo {
+  font-size: 1.5rem;
+  font-weight: bold;
+  color: #38bdf8;
+}
+
+.nav-links {
+  display: flex;
+  gap: 20px;
+  align-items: center;
+}
+
+.login-link {
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  transition: color 0.3s;
+}
+
+.login-link:hover {
+  color: #38bdf8;
+}
+
+.signup-btn {
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.signup-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 5px 15px rgba(56, 189, 248, 0.4);
+}
+
+.hero {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 100px 20px;
+}
+
+.hero-content {
+  max-width: 900px;
+}
+
+.hero h1 {
+  font-size: 4rem;
+  margin-bottom: 20px;
+  line-height: 1.2;
+}
+
+.highlight {
+  color: #38bdf8;
+}
+
+.hero p {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  max-width: 600px;
+  line-height: 1.6;
+  margin: 0 auto 40px;
+}
+
+.hero-btns {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+}
+
+.main-btn {
+  padding: 15px 30px;
+  background: #38bdf8;
+  color: #0f172a;
+  border-radius: 8px;
+  border: none;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.main-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.4);
+}
+
+.secondary-btn {
+  padding: 15px 30px;
+  background: transparent;
+  color: #38bdf8;
+  border: 2px solid #38bdf8;
+  border-radius: 8px;
+  font-size: 1.1rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.secondary-btn:hover {
+  background: #38bdf8;
+  color: #0f172a;
+}
+
+.features {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 30px;
+  padding: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-card {
+  background: #1e293b;
+  padding: 30px;
+  border-radius: 16px;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+}
+
+.feature-card:hover {
+  transform: translateY(-10px);
+  border-color: #38bdf8;
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+}
+
+.feature-card .icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.feature-card h3 {
+  color: #38bdf8;
+  margin: 0 0 15px 0;
+  font-size: 1.5rem;
+}
+
+.feature-card p {
+  color: #94a3b8;
+  margin: 0;
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .landing-nav {
+    padding: 20px 30px;
+  }
+
+  .hero h1 {
+    font-size: 2.5rem;
+  }
+
+  .hero-btns {
+    flex-direction: column;
+  }
+
+  .features {
+    grid-template-columns: 1fr;
+    padding: 40px 20px;
+  }
+}

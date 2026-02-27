@@ -1,8 +1,10 @@
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import "./Auth.css";
 
 const Auth = ({ setUser }) => {
+  const navigate = useNavigate();
   const [isLogin, setIsLogin] = useState(true);
   const [formData, setFormData] = useState({
     name: "",
@@ -13,6 +15,7 @@ const Auth = ({ setUser }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    setError("");
     const endpoint = isLogin ? "/api/auth/login" : "/api/auth/register";
     try {
       const res = await axios.post(
@@ -22,12 +25,14 @@ const Auth = ({ setUser }) => {
       if (isLogin) {
         localStorage.setItem("token", res.data.token);
         setUser(res.data.user);
+        navigate("/dashboard");
       } else {
-        setIsLogin(true); // Switch to login after successful registration
+        setIsLogin(true);
         alert("Registration successful! Please login.");
       }
     } catch (err) {
       setError(err.response?.data?.message || "Authentication failed");
+      console.error("Auth error:", err);
     }
   };
 

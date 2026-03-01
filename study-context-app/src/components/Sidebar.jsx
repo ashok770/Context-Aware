@@ -8,7 +8,10 @@ const Sidebar = ({ currentView, setCurrentView, user, setUser }) => {
 
   return (
     <nav className="sidebar">
-      <h1 className="logo">StudyContext</h1>
+      <div className="sidebar-logo-container">
+        <img src="/images/logo.png" alt="StudyContext Logo" className="sidebar-logo-img" />
+        <h1 className="logo">StudyContext</h1>
+      </div>
       <ul>
         <li
           className={currentView === "dashboard" ? "active" : ""}

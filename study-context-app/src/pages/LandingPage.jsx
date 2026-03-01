@@ -35,7 +35,7 @@ const LandingPage = () => {
             </p>
             <div className="hero-btns">
               <button onClick={() => navigate('/login')} className="main-btn">Build Your Workspace</button>
-              <button className="secondary-btn">Watch Demo</button>
+              <button onClick={() => document.querySelector('.demo-section').scrollIntoView({ behavior: 'smooth' })} className="secondary-btn">Watch Demo</button>
             </div>
           </div>
           <div className="hero-image">
@@ -43,6 +43,17 @@ const LandingPage = () => {
           </div>
         </div>
       </header>
+
+      {/* Demo Video Section */}
+      <section className="demo-section">
+        <h2>See StudyContext in Action</h2>
+        <div className="video-container">
+          <video controls poster="/images/dashboard.png">
+            <source src="/videos/demo.mp4" type="video/mp4" />
+            Your browser doesn't support video playback.
+          </video>
+        </div>
+      </section>
 
       {/* Feature Grid */}
       <section className="features" id="features">

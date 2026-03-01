@@ -9,7 +9,10 @@ const LandingPage = () => {
     <div className="landing-container">
       {/* Navbar */}
       <nav className="landing-nav">
-        <div className="logo">StudyContext</div>
+        <div className="logo-container">
+          <img src="/images/logo.png" alt="StudyContext Logo" className="logo-img" />
+          <div className="logo">StudyContext</div>
+        </div>
         <div className="nav-links">
           <button onClick={() => navigate('/login')} className="login-link">Login</button>
           <button onClick={() => navigate('/login')} className="signup-btn">Get Started</button>

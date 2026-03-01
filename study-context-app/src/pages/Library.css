@@ -60,3 +60,26 @@
   text-decoration: none;
   font-weight: bold;
 }
+
+@media (max-width: 768px) {
+  .library-container {
+    padding: 1rem;
+  }
+
+  .library-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .resource-grid {
+    grid-template-columns: repeat(auto-fill, minmax(150px, 1fr));
+    gap: 1rem;
+  }
+
+  .file-preview {
+    height: 120px;
+  }
+
+  .file-info {
+    padding: 10px;
+  }
+}

@@ -103,3 +103,21 @@
   font-size: 0.9rem;
   text-align: center;
 }
+
+@media (max-width: 768px) {
+  .auth-card {
+    padding: 2rem 1.5rem;
+    max-width: 90%;
+  }
+
+  .auth-card h2 {
+    font-size: 1.5rem;
+  }
+
+  .back-to-home {
+    top: 1rem;
+    left: 1rem;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+  }
+}

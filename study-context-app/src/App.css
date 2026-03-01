@@ -234,6 +234,18 @@
   box-shadow: 0 5px 15px rgba(56, 189, 248, 0.3);
 }
 
+@media (max-width: 768px) {
+  .sessions-view h1 {
+    font-size: 1.5rem;
+  }
+
+  .view-more-btn,
+  .delete-btn {
+    padding: 6px 12px;
+    font-size: 0.85rem;
+  }
+}
+
 /* Resource Gallery */
 .resources-grid {
   display: flex;

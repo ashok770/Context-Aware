@@ -19,6 +19,12 @@ body {
   min-height: 100vh;
 }
 
+@media (max-width: 768px) {
+  .app-container {
+    flex-direction: column;
+  }
+}
+
 .sidebar {
   width: 250px;
   background-color: #111827;
@@ -29,9 +35,36 @@ body {
   justify-content: space-between;
 }
 
+@media (max-width: 768px) {
+  .sidebar {
+    width: 100%;
+    padding: 1rem;
+    border-right: none;
+    border-bottom: 1px solid #1e293b;
+  }
+
+  .sidebar ul {
+    display: flex;
+    overflow-x: auto;
+    gap: 0.5rem;
+    margin-top: 1rem;
+  }
+
+  .sidebar li {
+    white-space: nowrap;
+    margin-bottom: 0;
+  }
+}
+
 .main-content {
   flex: 1;
   padding: 3rem;
+}
+
+@media (max-width: 768px) {
+  .main-content {
+    padding: 1.5rem 1rem;
+  }
 }
 
 .sidebar ul {
@@ -90,6 +123,31 @@ body {
 .delete-btn:hover {
   background-color: #ef4444;
   color: white;
+}
+
+@media (max-width: 768px) {
+  .session-card {
+    padding: 1rem !important;
+  }
+
+  .session-card-header {
+    flex-direction: column;
+    gap: 1rem;
+  }
+
+  .session-card-header > div:last-child {
+    width: 100%;
+    justify-content: flex-start;
+  }
+
+  .detail-info-grid {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  .modal-content {
+    width: 95%;
+    max-height: 90vh;
+  }
 }
 
 .sidebar-footer {

@@ -303,3 +303,29 @@
   white-space: pre-wrap;
   font-size: 0.95rem;
 }
+
+@media (max-width: 768px) {
+  .workspaces-container {
+    padding: 1rem;
+  }
+
+  .workspace-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .workspaces-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .workspace-detail {
+    padding: 1rem;
+  }
+
+  .detail-header h1 {
+    font-size: 1.5rem;
+  }
+
+  .session-item {
+    padding: 1rem;
+  }
+}

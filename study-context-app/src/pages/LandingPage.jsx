@@ -15,8 +15,8 @@ const LandingPage = () => {
         </div>
         <div className="nav-menu">
           <a href="#home" className="nav-menu-link">Home</a>
-          <a href="#features" className="nav-menu-link">Features</a>
-          <a href="#about" className="nav-menu-link">About Us</a>
+          <button onClick={() => navigate('/features')} className="nav-menu-link">Features</button>
+          <button onClick={() => navigate('/about')} className="nav-menu-link">About Us</button>
         </div>
         <div className="nav-links">
           <button onClick={() => navigate('/login')} className="login-link">Login</button>

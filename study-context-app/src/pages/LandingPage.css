@@ -10,6 +10,12 @@
   justify-content: space-between;
   align-items: center;
   padding: 20px 80px;
+  background: rgba(15, 23, 42, 0.8);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(51, 65, 85, 0.5);
+  position: sticky;
+  top: 0;
+  z-index: 100;
 }
 
 .logo-container {
@@ -46,6 +52,9 @@
   font-size: 1rem;
   font-weight: 500;
   transition: color 0.3s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
 }
 
 .nav-menu-link:hover {

@@ -1,0 +1,148 @@
+.features-page {
+  background: #0f172a;
+  color: white;
+  padding: 100px 5%;
+  font-family: 'Inter', sans-serif;
+  min-height: 100vh;
+}
+
+.features-header {
+  text-align: center;
+  margin-bottom: 80px;
+}
+
+.badge {
+  background: rgba(56, 189, 248, 0.1);
+  color: #38bdf8;
+  padding: 5px 15px;
+  border-radius: 20px;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border: 1px solid #38bdf8;
+  display: inline-block;
+}
+
+.features-header h1 {
+  font-size: 3rem;
+  margin: 20px 0;
+}
+
+.features-header p {
+  font-size: 1.2rem;
+  color: #94a3b8;
+  max-width: 700px;
+  margin: 0 auto;
+}
+
+.features-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 30px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.feature-item {
+  background: #1e293b;
+  padding: 40px;
+  border-radius: 24px;
+  border: 1px solid #334155;
+  transition: all 0.3s ease;
+  position: relative;
+  overflow: hidden;
+}
+
+.feature-item:hover {
+  border-color: #38bdf8;
+  transform: translateY(-5px);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.2);
+}
+
+.feature-tag {
+  color: #38bdf8;
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  font-weight: 700;
+  display: block;
+  margin-bottom: 10px;
+}
+
+.feature-icon {
+  font-size: 2.5rem;
+  margin-bottom: 20px;
+}
+
+.feature-text h3 {
+  font-size: 1.5rem;
+  margin: 10px 0;
+  color: #f8fafc;
+}
+
+.feature-text p {
+  color: #94a3b8;
+  line-height: 1.6;
+  margin: 0;
+}
+
+.cta-banner {
+  margin-top: 100px;
+  background: linear-gradient(90deg, #38bdf8, #818cf8);
+  padding: 60px;
+  border-radius: 30px;
+  text-align: center;
+  color: #0f172a;
+}
+
+.cta-banner h2 {
+  font-size: 2.5rem;
+  margin: 0 0 20px 0;
+}
+
+.cta-btn {
+  margin-top: 20px;
+  padding: 15px 40px;
+  background: #0f172a;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  font-weight: bold;
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+}
+
+@media (max-width: 768px) {
+  .features-page {
+    padding: 60px 5%;
+  }
+
+  .features-header h1 {
+    font-size: 2rem;
+  }
+
+  .features-header p {
+    font-size: 1rem;
+  }
+
+  .features-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .feature-item {
+    padding: 30px;
+  }
+
+  .cta-banner {
+    padding: 40px 20px;
+  }
+
+  .cta-banner h2 {
+    font-size: 1.8rem;
+  }
+}

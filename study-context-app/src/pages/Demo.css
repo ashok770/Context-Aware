@@ -1,0 +1,127 @@
+.demo-page {
+  background: #0f172a;
+  color: white;
+  min-height: 100vh;
+  font-family: 'Inter', sans-serif;
+}
+
+.demo-main-section {
+  padding: 80px;
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.demo-header {
+  text-align: center;
+  margin-bottom: 60px;
+}
+
+.demo-header h1 {
+  font-size: 3.5rem;
+  margin-bottom: 1.5rem;
+  background: linear-gradient(135deg, #38bdf8, #667eea);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.demo-header p {
+  color: #94a3b8;
+  font-size: 1.2rem;
+  max-width: 700px;
+  margin: 0 auto;
+  line-height: 1.8;
+}
+
+.demo-video-wrapper {
+  max-width: 900px;
+  margin: 0 auto 80px;
+  position: relative;
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 25px 70px rgba(0, 0, 0, 0.6);
+  border: 1px solid #334155;
+}
+
+.demo-video-wrapper::before {
+  content: '';
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  background: linear-gradient(135deg, #38bdf8, #667eea, #764ba2);
+  border-radius: 16px;
+  z-index: -1;
+  opacity: 0.4;
+}
+
+.demo-video-wrapper video {
+  width: 100%;
+  display: block;
+  background: #000;
+}
+
+.demo-cta {
+  text-align: center;
+  padding: 60px 40px;
+  background: linear-gradient(135deg, rgba(56, 189, 248, 0.1), rgba(102, 126, 234, 0.1));
+  border-radius: 16px;
+  border: 1px solid #334155;
+}
+
+.demo-cta h2 {
+  font-size: 2.5rem;
+  margin-bottom: 2rem;
+  color: white;
+}
+
+.cta-btn {
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 18px 40px;
+  border-radius: 10px;
+  border: none;
+  font-size: 1.2rem;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.cta-btn:hover {
+  transform: scale(1.05);
+  box-shadow: 0 10px 30px rgba(56, 189, 248, 0.5);
+}
+
+@media (max-width: 768px) {
+  .demo-main-section {
+    padding: 40px 20px;
+  }
+
+  .demo-header h1 {
+    font-size: 2.2rem;
+  }
+
+  .demo-header p {
+    font-size: 1rem;
+    padding: 0 10px;
+  }
+
+  .demo-video-wrapper {
+    margin-bottom: 50px;
+  }
+
+  .demo-cta {
+    padding: 40px 20px;
+  }
+
+  .demo-cta h2 {
+    font-size: 1.8rem;
+  }
+
+  .cta-btn {
+    width: 100%;
+    padding: 15px 30px;
+    font-size: 1.1rem;
+  }
+}

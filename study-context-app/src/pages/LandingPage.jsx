@@ -19,14 +19,19 @@ const LandingPage = () => {
       {/* Hero Section */}
       <header className="hero">
         <div className="hero-content">
-          <h1>Stop Searching. <span className="highlight">Start Resuming.</span></h1>
-          <p>
-            The first context-aware study tracker for CSE students. 
-            Integrated with Gemini AI to summarize your sessions and organize your project workspaces.
-          </p>
-          <div className="hero-btns">
-            <button onClick={() => navigate('/login')} className="main-btn">Build Your Workspace</button>
-            <button className="secondary-btn">Watch Demo</button>
+          <div className="hero-text">
+            <h1>Stop Searching. <span className="highlight">Start Resuming.</span></h1>
+            <p>
+              The first context-aware study tracker for CSE students. 
+              Integrated with Gemini AI to summarize your sessions and organize your project workspaces.
+            </p>
+            <div className="hero-btns">
+              <button onClick={() => navigate('/login')} className="main-btn">Build Your Workspace</button>
+              <button className="secondary-btn">Watch Demo</button>
+            </div>
+          </div>
+          <div className="hero-image">
+            <img src="/images/dashboard.png" alt="Dashboard Preview" />
           </div>
         </div>
       </header>

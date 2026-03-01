@@ -38,6 +38,9 @@ const Auth = ({ setUser }) => {
 
   return (
     <div className="auth-container">
+      <button className="back-to-home" onClick={() => navigate("/")}>
+        ← Back to Home
+      </button>
       <form className="auth-card" onSubmit={handleSubmit}>
         <h2>{isLogin ? "Welcome Back" : "Create Account"}</h2>
         {error && <p className="error-msg">{error}</p>}

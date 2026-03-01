@@ -4,6 +4,26 @@
   align-items: center;
   justify-content: center;
   background: linear-gradient(135deg, #0f172a 0%, #1e293b 100%);
+  position: relative;
+}
+
+.back-to-home {
+  position: absolute;
+  top: 2rem;
+  left: 2rem;
+  background: transparent;
+  color: #38bdf8;
+  border: 1px solid #38bdf8;
+  padding: 0.5rem 1rem;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 0.9rem;
+  transition: all 0.3s;
+}
+
+.back-to-home:hover {
+  background: #38bdf8;
+  color: #000;
 }
 
 .auth-card {

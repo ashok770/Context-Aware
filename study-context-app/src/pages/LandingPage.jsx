@@ -35,17 +35,26 @@ const LandingPage = () => {
             </p>
             <div className="hero-btns">
               <button onClick={() => navigate('/login')} className="main-btn">Build Your Workspace</button>
-              <button onClick={() => navigate('/features')} className="secondary-btn">Learn More</button>
+              <button onClick={() => document.querySelector('.demo-section').scrollIntoView({ behavior: 'smooth' })} className="secondary-btn">Watch Demo</button>
             </div>
           </div>
-          <div className="hero-video">
-            <video controls poster="/images/dashboard.png" autoPlay muted loop>
-              <source src="/videos/demo.mp4" type="video/mp4" />
-              Your browser doesn't support video playback.
-            </video>
+          <div className="hero-image">
+            <img src="/images/dashboard.png" alt="Dashboard Preview" />
           </div>
         </div>
       </header>
+
+      {/* Demo Video Section */}
+      <section className="demo-section">
+        <h2>See StudyContext in Action</h2>
+        <p>Watch how StudyContext helps you track, organize, and resume your study sessions effortlessly</p>
+        <div className="video-container">
+          <video controls poster="/images/dashboard.png">
+            <source src="/videos/demo.mp4" type="video/mp4" />
+            Your browser doesn't support video playback.
+          </video>
+        </div>
+      </section>
 
       {/* Feature Grid */}
       <section className="features" id="features">

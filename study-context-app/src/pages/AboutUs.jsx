@@ -1,9 +1,12 @@
 import React from 'react';
+import Navbar from '../components/Navbar';
 import './AboutUs.css';
 
 const AboutUs = () => {
   return (
-    <div className="about-container">
+    <>
+      <Navbar />
+      <div className="about-container">
       <section className="about-hero">
         <h1>The Story Behind <span className="highlight">StudyContext</span></h1>
         <p>Built by students, for students who refuse to lose their train of thought.</p>
@@ -40,7 +43,8 @@ const AboutUs = () => {
           <span>Cloudinary</span>
         </div>
       </section>
-    </div>
+      </div>
+    </>
   );
 };
 

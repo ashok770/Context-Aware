@@ -1,5 +1,6 @@
 import React from 'react';
 import { useNavigate } from 'react-router-dom';
+import Navbar from '../components/Navbar';
 import './Features.css';
 
 const Features = () => {
@@ -33,7 +34,9 @@ const Features = () => {
   ];
 
   return (
-    <div className="features-page">
+    <>
+      <Navbar />
+      <div className="features-page">
       <header className="features-header">
         <span className="badge">Platform Capabilities</span>
         <h1>Engineered for <span className="highlight">Maximum Focus</span></h1>
@@ -58,6 +61,7 @@ const Features = () => {
         <button className="cta-btn" onClick={() => navigate('/login')}>Start Your First Session</button>
       </div>
     </div>
+    </>
   );
 };
 

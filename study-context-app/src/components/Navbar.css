@@ -1,0 +1,165 @@
+.public-nav {
+  background: rgba(15, 23, 42, 0.95);
+  backdrop-filter: blur(10px);
+  border-bottom: 1px solid rgba(56, 189, 248, 0.2);
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.3);
+}
+
+.nav-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 80px;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.logo-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+.logo-container:hover {
+  transform: scale(1.05);
+}
+
+.logo-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  border: 2px solid #38bdf8;
+  box-shadow: 0 0 15px rgba(56, 189, 248, 0.4);
+}
+
+.logo {
+  font-size: 1.2rem;
+  font-weight: bold;
+  color: #38bdf8;
+}
+
+.nav-menu {
+  display: flex;
+  gap: 2.5rem;
+  align-items: center;
+}
+
+.nav-menu-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: all 0.3s;
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  position: relative;
+  padding: 5px 0;
+}
+
+.nav-menu-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background: #38bdf8;
+  transition: width 0.3s;
+}
+
+.nav-menu-link:hover {
+  color: #38bdf8;
+}
+
+.nav-menu-link:hover::after {
+  width: 100%;
+}
+
+.nav-links {
+  display: flex;
+  gap: 15px;
+  align-items: center;
+}
+
+.login-link {
+  background: transparent;
+  color: #94a3b8;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+  padding: 8px 16px;
+}
+
+.login-link:hover {
+  color: #38bdf8;
+}
+
+.signup-btn {
+  background: #38bdf8;
+  color: #0f172a;
+  padding: 10px 24px;
+  border-radius: 8px;
+  border: none;
+  font-weight: 600;
+  cursor: pointer;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+
+.signup-btn:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 5px 20px rgba(56, 189, 248, 0.4);
+}
+
+@media (max-width: 768px) {
+  .nav-container {
+    padding: 15px 20px;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .logo-img {
+    width: 40px;
+    height: 40px;
+  }
+
+  .logo {
+    font-size: 1rem;
+  }
+
+  .nav-menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 1.5rem;
+    padding-top: 10px;
+  }
+
+  .nav-menu-link {
+    font-size: 0.9rem;
+  }
+
+  .nav-links {
+    gap: 10px;
+  }
+
+  .login-link {
+    font-size: 0.9rem;
+    padding: 6px 12px;
+  }
+
+  .signup-btn {
+    font-size: 0.9rem;
+    padding: 8px 16px;
+  }
+}

@@ -34,6 +34,24 @@
   color: #38bdf8;
 }
 
+.nav-menu {
+  display: flex;
+  gap: 2rem;
+  align-items: center;
+}
+
+.nav-menu-link {
+  color: #94a3b8;
+  text-decoration: none;
+  font-size: 1rem;
+  font-weight: 500;
+  transition: color 0.3s;
+}
+
+.nav-menu-link:hover {
+  color: #38bdf8;
+}
+
 .nav-links {
   display: flex;
   gap: 20px;
@@ -203,6 +221,19 @@
 @media (max-width: 768px) {
   .landing-nav {
     padding: 20px 30px;
+    flex-wrap: wrap;
+    gap: 1rem;
+  }
+
+  .nav-menu {
+    order: 3;
+    width: 100%;
+    justify-content: center;
+    gap: 1.5rem;
+  }
+
+  .nav-menu-link {
+    font-size: 0.9rem;
   }
 
   .logo-img {

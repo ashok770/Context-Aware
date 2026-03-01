@@ -13,6 +13,11 @@ const LandingPage = () => {
           <img src="/images/logo.png" alt="StudyContext Logo" className="logo-img" />
           <div className="logo">StudyContext</div>
         </div>
+        <div className="nav-menu">
+          <a href="#home" className="nav-menu-link">Home</a>
+          <a href="#features" className="nav-menu-link">Features</a>
+          <a href="#about" className="nav-menu-link">About Us</a>
+        </div>
         <div className="nav-links">
           <button onClick={() => navigate('/login')} className="login-link">Login</button>
           <button onClick={() => navigate('/login')} className="signup-btn">Get Started</button>
@@ -20,7 +25,7 @@ const LandingPage = () => {
       </nav>
 
       {/* Hero Section */}
-      <header className="hero">
+      <header className="hero" id="home">
         <div className="hero-content">
           <div className="hero-text">
             <h1>Stop Searching. <span className="highlight">Start Resuming.</span></h1>
@@ -40,7 +45,7 @@ const LandingPage = () => {
       </header>
 
       {/* Feature Grid */}
-      <section className="features">
+      <section className="features" id="features">
         <div className="feature-card">
           <div className="icon">🧠</div>
           <h3>AI Insights</h3>

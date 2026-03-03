@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
+import API_URL from "../config";
 import "./Auth.css";
 
 const Auth = ({ setUser }) => {
@@ -19,7 +20,7 @@ const Auth = ({ setUser }) => {
     const endpoint = isLogin ? "/api/auth/login" : "/api/auth/register";
     try {
       const res = await axios.post(
-        `http://localhost:5000${endpoint}`,
+        `${API_URL}${endpoint}`,
         formData,
       );
       if (isLogin) {

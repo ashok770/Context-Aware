@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import API_URL from "../config";
 import "./Workspaces.css";
 
 const Workspaces = ({ sessions }) => {
@@ -25,7 +26,7 @@ const Workspaces = ({ sessions }) => {
     const totalTime = workspaceSessions.reduce((sum, s) => sum + s.seconds, 0);
 
     try {
-      const response = await fetch("http://localhost:5000/api/workspace-summary", {
+      const response = await fetch(`${API_URL}/api/workspace-summary`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

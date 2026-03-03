@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { Routes, Route } from "react-router-dom";
+import API_URL from "../config";
 import Sidebar from "./Sidebar";
 import ResumeHero from "./ResumeHero";
 import ActiveTimer from "./ActiveTimer";
@@ -23,7 +24,7 @@ const DashboardLayout = ({ user, setUser }) => {
     const fetchSessions = async () => {
       try {
         const token = localStorage.getItem("token");
-        const response = await fetch("http://localhost:5000/api/sessions", {
+        const response = await fetch(`${API_URL}/api/sessions`, {
           headers: { "x-auth-token": token },
         });
         if (response.ok) {
@@ -65,7 +66,7 @@ const DashboardLayout = ({ user, setUser }) => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch(`http://localhost:5000/api/sessions/${id}`, {
+      const response = await fetch(`${API_URL}/api/sessions/${id}`, {
         method: "DELETE",
         headers: { "x-auth-token": token },
       });
@@ -89,7 +90,7 @@ const DashboardLayout = ({ user, setUser }) => {
 
     try {
       const token = localStorage.getItem("token");
-      const response = await fetch("http://localhost:5000/api/sessions", {
+      const response = await fetch(`${API_URL}/api/sessions`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

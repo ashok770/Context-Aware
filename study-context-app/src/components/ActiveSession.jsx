@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import API_URL from "../config";
 import "../styles/ActiveSession.css";
 
 const ActiveSession = ({ subject, onEnd }) => {
@@ -66,7 +67,7 @@ const ActiveSession = ({ subject, onEnd }) => {
           onClick={async () => {
             // package session data including resources and notes
             try {
-              await fetch("http://localhost:5000/api/sessions", {
+              await fetch(`${API_URL}/api/sessions`, {
                 method: "POST",
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({

@@ -1,4 +1,5 @@
 import React from "react";
+import API_URL from "../config";
 import "../styles/Planner.css";
 
 const Heatmap = ({ sessions }) => {
@@ -56,7 +57,7 @@ const Planner = ({ sessions = [] }) => {
   React.useEffect(() => {
     const fetchTasks = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/tasks");
+        const res = await fetch(`${API_URL}/api/tasks`);
         if (res.ok) {
           const data = await res.json();
           setTasks(data);
@@ -71,7 +72,7 @@ const Planner = ({ sessions = [] }) => {
   const addTask = async () => {
     if (!taskInput.trim()) return;
     try {
-      const res = await fetch("http://localhost:5000/api/tasks", {
+      const res = await fetch(`${API_URL}/api/tasks`, {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
@@ -103,7 +104,7 @@ const Planner = ({ sessions = [] }) => {
     try {
       const task = tasks.find((t) => t._id === id || t.id === id);
       if (!task) return;
-      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      const res = await fetch(`${API_URL}/api/tasks/${id}`, {
         method: "PATCH",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({ completed: !task.completed }),
@@ -119,7 +120,7 @@ const Planner = ({ sessions = [] }) => {
 
   const deleteTask = async (id) => {
     try {
-      const res = await fetch(`http://localhost:5000/api/tasks/${id}`, {
+      const res = await fetch(`${API_URL}/api/tasks/${id}`, {
         method: "DELETE",
       });
       if (res.ok) {

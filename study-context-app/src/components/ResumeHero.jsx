@@ -1,4 +1,4 @@
-// src/components/ResumeHero.jsx
+
 const ResumeHero = ({ lastSession, onStart }) => {
   return (
     <div className="resume-card">
@@ -9,7 +9,7 @@ const ResumeHero = ({ lastSession, onStart }) => {
       </p>
       <button
         className="resume-btn"
-        onClick={onStart} // <-- THIS MUST BE HERE
+        onClick={onStart} 
       >
         Resume Session
       </button>
@@ -17,4 +17,4 @@ const ResumeHero = ({ lastSession, onStart }) => {
   );
 };
 
-export default ResumeHero; // <--- MAKE SURE THIS LINE IS HERE
+export default ResumeHero; 
